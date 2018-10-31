@@ -1,0 +1,19 @@
+#用format函数进行格式化 
+gender=input("请输入性别：")
+if gender=="nan":
+    print("对不起，没有糖吃")
+else:
+    print("发糖喽")
+print("开始上课了")
+
+for i in range(1,10):
+    print(i)
+    
+#打印学生列表姓名
+#如果是jingjing，那肯定是我的最爱
+for name in ["zhang","li","jingjing"]:
+    print(name)
+    if name=="jingjing":
+        print(" 我最爱的{0}出现了".format(name))
+    else:
+        print("同学我们不约，请自重")    
