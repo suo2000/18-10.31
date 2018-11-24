@@ -106,4 +106,37 @@ Web 浏览器的作用是读取 HTML 文档，并以网页的形式显示出它�
 <link>	定义资源引用。
 <div>	定义文档中的节或区域（块级）。
 <span>	定义文档中的行内的小块或区域。
+
+13.HTML链接：使用超级链接与网络上的另一个文档相连。
+ej1:<html>
+<body>
+<p>
+<a href="/index.html">本文本</a>是一个指向本网站中的一个页面的链接。
+</p>
+</body>
+</html>
+ej2:<html>
+<body>
+<p>
+您也可以使用图像来做链接：
+<a href="/index.html">
+<img border="0" src="/i/eg.gif"/>
+</a>
+</p>
+</body>
+</html>
+·HTML超链接：链接可以是一个字，词，图像，通过点击跳转到其他页面或者此页面的另一部分。
+·通过<a>标签在html中创建链接。
+(1)href属性-指向另一个文档的链接
+（2）name属性-创建文档内的书签
+·HTML链接语法：<a href="url">LInk text </a>
+              href属性规定链接的目标
+              ej：<a href="http:www.baidu.com/">VISIT </a>
+·target属性：可以定义被链接的文档在何处显示。
+·name属性：通过创建HTML内的书签，但是对用户不可见。（用户不需要一直翻动到所需页面），且可以用id属性代替name属性。
+ej：创建一个书签<a name="tips">基本的注意事项-有用的提示</a>
+在同一个文档中创建指向该描的链接：<a href="#tips">有用的提示</a>
+14.
+
+
    
