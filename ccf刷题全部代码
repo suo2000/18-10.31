@@ -1,0 +1,334 @@
+/* CCF201409-1 相邻数对 */
+ 
+#include <iostream>
+#include <algorithm>
+#include <stdio.h>
+ 
+using namespace std;
+ 
+const int N = 1000;
+int a[N];
+ 
+int main(void)
+{
+    int n, cnt = 0;
+ 
+    // 输入数据
+    scanf("%d", &n);
+    for(int i=0; i<n; i++)
+        scanf("%d", &a[i]);
+ 
+    // 排序
+    sort(a, a + n);
+ 
+    // 统计
+    for(int i=1; i<n; i++)
+        if(a[i] - a[i - 1] == 1)
+            cnt++;
+ 
+    // 输出结果
+    printf("%d\n", cnt);
+ 
+    return 0;
+}
+ 
+//6
+10 2 6 3 7 8
+样例输出
+3
+----------------------------------------------------------------------------------------------------
+/* CCF201509-2 日期计算 */
+ 
+#include <iostream>
+ 
+using namespace std;
+ 
+int days[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+ 
+// 闰年计算函数
+int leapyear(int year) {
+    return ((year%4 == 0 && year%100 != 0) || year%400 == 0) ? 1 : 0;
+}
+ 
+int main()
+{
+    int y, d, month=0, day, i;
+ 
+    // 输入数据
+    cin >> y >> d;
+ 
+    // 计算月与日
+    days[1] += leapyear(y);
+    i = 0;
+    while(d > 0) {
+        if(d <= days[i]) {
+            month = i + 1;
+            day = d;
+            break;
+        } else {
+            d -= days[i];
+            i++;
+        }
+    }
+ 
+    // 输出结果
+    cout << month << endl << day << endl;
+ 
+    return 0;
+}
+
+//2015
+80
+样例输出
+3
+21
+-------------------------------------------------------------------------------------
+/* CCF201612-1 中间数 */
+ 
+#include <iostream>
+#include <algorithm>
+ 
+using namespace std;
+ 
+const int N = 1000;
+int val[N];
+ 
+int main()
+{
+    int n, mid, leftcount, rightcount;
+ 
+    // 输入数据
+    cin >> n;
+    for(int i=0; i<n; i++)
+        cin >> val[i];
+ 
+    // 排序
+    sort(val, val+n);
+ 
+    // 找出中间数
+    mid = n / 2;
+    leftcount = mid;
+    rightcount = n - mid - 1;
+    // 去掉左边与中间相同值数的个数
+    for(int i=mid-1; i>=0; i--)
+        if(val[i] == val[mid])
+            leftcount--;
+        else
+            break;
+    // 去掉右边与中间相同值数的个数
+    for(int i=mid+1; i<n; i++)
+        if(val[i] == val[mid])
+            rightcount--;
+        else
+            break;
+ 
+    // 输出结果
+    if(leftcount == rightcount)
+        cout << val[mid] << endl;
+    else
+        cout << -1 << endl;
+ 
+    return 0;
+}
+------------------------------------------------
+/* HDU4509 湫湫系列故事——减肥记II */
+ 
+#include <stdio.h>
+#include <string.h>
+ 
+#define N 24 * 60
+ 
+char flag[N + 1];
+ 
+int main(void)
+{
+    int n, sh, sm, eh, em, i;
+ 
+    while(scanf("%d", &n) != EOF) {
+        memset(flag, 1, sizeof(flag));
+ 
+        while(n--) {
+            scanf("%d:%d%d:%d", &sh, &sm, &eh, &em);
+ 
+            int start = sh * 60 + sm;
+            int end = eh * 60 + em;
+            memset(flag + start, 0, end - start);//将从flag+start开始的end-start字节赋值为0；
+        }
+ 
+        int ans = 0;
+        for(i=0; i<N; i++)
+            if(flag[i])
+                ans++;
+ 
+        printf("%d\n", ans);
+    }
+ 
+    return 0;
+}
+---------------------------------------------------------------------
+/* HDU2036 求多边形面积 */
+ 
+#include <iostream>
+#include <stdio.h>
+ 
+using namespace std;
+ 
+const int N = 100;
+double x[N], y[N];
+ 
+double area(double x0, double y0, double x1,double y1, double x2,double y2) {
+   return (x0 * y1 + x2 * y0 + x1 * y2 - x2 * y1 - x0 * y2 - x1 * y0 ) / 2;
+}
+ 
+int main()
+{
+    int n;
+ 
+    while(~scanf("%d", &n) && n) {
+        for(int i=0; i<n; i++)
+            scanf("%lf%lf", &x[i], &y[i]);
+ 
+        double sum = 0;
+        for(int i=1; i<n-1; i++)
+            sum += area(x[0], y[0], x[i], y[i], x[i+1], y[i+1]);
+ 
+        printf("%.1f\n", sum);
+    }
+ 
+    return 0;
+}
+ 
+//3 0 0 1 0 0 14 1 0 0 1 -1 0 0 -10
+
+--------------------------------------------------------------------------------
+#include <iostream>
+#include <algorithm>
+#include <vector>
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+using namespace std;
+struct key{
+    int kid,time,flag;//钥匙编号，操作时间，操作标志 
+};
+bool compare1(key k1,key k2){
+    if(k1.time!=k2.time){//操作时间，小的先操作 
+        return k1.time<k2.time;
+    }
+    else if(k1.flag!=k2.flag){//先还在取，还为1，取为0 ，先还后取
+        return k1.flag>k2.flag;
+    }
+    else{
+        return k1.kid<k2.kid;//编号小的先处理 
+    }   
+}
+int main(int argc, char *argv[]) {
+    int N,K,len;
+    cin>>N>>K;
+    vector<key> mykey;
+    for(int i=0;i<K;i++){
+        int id,s,c;
+        cin>>id>>s>>c;
+        key k;//将数据放入队列（即要处理事务的数目）
+        k.kid=id;
+        k.time=s;
+        k.flag=0;//借出
+        mykey.push_back(k); 
+        k.kid = id;
+        k.time = s+c;
+        k.flag=1;//还回
+        mykey.push_back(k);     
+    }
+    sort(mykey.begin(),mykey.end(),compare1);//将事务的先后发生顺序排列出
+    int index[N+1];
+    for(int i=1;i<=N;i++){//数组初始化，模拟钥匙号 
+        index[i] = i;
+    }
+    for(int i=0;i<mykey.size();i++){
+        key k = mykey[i];
+        int id = k.kid,flag = k.flag; 
+        if(flag==0){//借出 
+            for(int j=1;j<=N;j++){//必须从左到右进行遍历 
+                if(index[j]==id){
+                    index[j]=0;
+                    break;//不能少，找到第一个就结束了，即最先借走的钥匙
+                }
+            }
+        }    
+        else if(flag==1){//还钥匙 
+            for(int mj=1;mj<=N;mj++){//从左往右，依次还
+                if(index[mj]==0){
+                    index[mj]=id;
+                    break;
+                }
+            }
+        }
+    }
+    //去掉末尾的空格 
+    cout<<index[1];
+    for(int i=2;i<=N;i++){
+        cout<<" "<<index[i];
+    }
+    return 0;
+}
+//5 2
+4 3 3
+2 2 7//
+--------------------------------------------------------------------
+/*森林*/
+#include <stdio.h>
+#include <stdlib.h>
+ 
+long long gcd(long long m, long long n)//辗转相除法求最大公约数
+{
+    if(n == 0)
+        return m;
+    else
+        return gcd(n, m % n);
+}
+ 
+int main(void)
+{
+    int n, val;
+    long long gcdval, decimal, denominator;
+    char operate;
+ 
+    scanf("%d", &n);
+    while(n--) {
+        decimal = 0;
+        denominator = 1;
+ 
+        operate = '+';
+ 
+        for(;;) {
+            scanf("%d", &val);
+            if(operate == '+')
+                decimal += val * denominator;
+            else if(operate == '-')
+                decimal -= val * denominator;
+            else if(operate == '*')
+                decimal *= val;
+            else if(operate == '/')
+                denominator *= val;
+ 
+            if(decimal == 0)
+                denominator = 1;
+            else {
+                gcdval = gcd(abs(decimal), abs(denominator));
+                decimal /= gcdval;
+                denominator /= gcdval;
+            }
+ 
+            scanf("%c", &operate);
+            if(operate == '=')
+                break;
+        }
+ 
+        if(decimal == 0)
+            printf("%lld\n", decimal);
+        else
+            printf("%lld/%lld\n", decimal, denominator);
+    }
+ 
+    return 0;
+}
+----------------------------------
+
