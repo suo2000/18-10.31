@@ -158,7 +158,105 @@ ej:无序表
 <li> 茶</li>
 </ol>
 ·定义列表
-自定义列表不仅仅是一列项目，而是项目及其注释的组合。
-自定义列表以 <dl> 标签开始。每个自定义列表项以 <dt> 开始。每个自定义列表项的定义以 <dd> 开始。
+    *自定义列表不仅仅是一列项目，而是项目及其注释的组合。
+    *自定义列表以 <dl> 标签开始。每个自定义列表项以 <dt> 开始。每个自定义列表项的定义以 <dd> 开始。
+----------------------------------------------------------------------
+2018-12-1
+17.HTML <div><span>：通过<div><span>将html中的元素组合起来
+·html块元素
+    *大多数html元素被定义为块级元素（block level element）或内联元素(inline element)
+    *块级元素在浏览器显示时，通常会以新行来开始或结束
+       ej:<h1><p><ul><table>
+·html内联元素
+    *显示时不会以新行开始
+      ej：<b><td><a><img>
+·<div>元素-块级
+     *浏览器会在其前后表示拆行
+     *与CSS使用，<div>元素可对大的内容块设置样式属性
+ ·<span>元素-内联元素
+     *与CSS使用时，<span>元素可用于为部分文本设置样式属性。
+     
+18.HTML类：设置类，并对元素的类设置不同的CSS样式。 
+ej：<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>html类</title>
+	
+	<style>
+		.cities{
+			background-color:rgba(88,55,55,1.00);
+			color: white;
+			margin: 20px;
+			padding: 20px;
+		}
+	</style>
+</head>
+
+<body>
+<div class="cities">
+	<h2>
+	London</h2>
+	<p>
+	London is the capital city of England. 
+It is the most populous city in the United Kingdom, 
+with a metropolitan area of over 13 million inhabitants.</p></div>	
+	
+</body>
+</html>
+19.HTML脚本
+·加入脚本
+ej:<html>
+<body>
+<script type="text/javascript">
+document.write("<h1>HELLO WORLE!</h1>")
+</script>
+</body>
+</html>
+·javascript最常用于图片操作，表单验证以及内容动态更新
+·<noscript>标签
+    *当无法使用脚本时替代内容（图片为alt）
+20.HTML头部
+·<title>:文档标题（必需）
+  *作用：·定义浏览器工具栏中的标题
+         ·提供页面被添加到文件夹时显示的标题
+         ·显示在搜索引擎结果中的页面标题
+  ·<base>:为页面上所有链接规定地址或默认目标（target）
+     ej:<head>
+     <base href="http:www.baidu.com"/>
+     <base target="_blank"/>
+     </head>
+ ·<link>:定义文档与外部资源之间的关系
+ ej：<head>
+ <link rel="stylesheet" type="text/css" href="mystyle.css"/>
+ </head>
+ ·<style>:定义样式信息
+ ej：<head>
+ <style type="text/css">
+ body{background-color:yellow}
+ p{color:blue}
+ </style>
+ </head>
+ ·<meta>:提供关于html的元数据
+ 21.HTML实体
+ ·在html中某些字符是预留的 （<）浏览器误认为是标签
+ ·要解决问题则要使用字符实体ej：&entity_name或者&#entity_number
+ · 。不间断空格：&nbsp
+ ·实体名对大小写敏感！！！
+ 22.HTML统一资源定位器（URL）
+ ·url也称为网址由单词（网址域名）或数字（IP地址）组成
+    ej:“www.baidu.com” "192.1.168.1.2"
+  ·语法规则：scheme://host.domain:port/path/filename
+  ej:https://www.sogou.com/link?url=DSOYnZeCC_oLiDJQIDpHwjOKL13vFFNJ&query=%62%61%69%64%75
+  ·scheme-定义因特网服务类型。ej：http(超文本传输协议）https（安全超文本传输协议）ftp（因特网文件传输协议）file（您计算机上的文件）
+  ·host-定义域主机（http的默认主机是www）
+  ·domain-定义因特网域名，比如www。baidu。com
+  ·：port-定义主机上的端口号（默认是80）
+  ·path-路径
+  ·filename-定义文档/资源的名称 
+ 
+
+ 
+
 
    
